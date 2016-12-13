@@ -8,7 +8,7 @@ using ASPCoreSample.Models;
 
 namespace ASPCoreSample.Repository
 {
-    public class CustomerRepository : IRepository<Customer>
+    public class CustomerRepository
     {
         private string connectionString;
         public CustomerRepository(IConfiguration configuration)

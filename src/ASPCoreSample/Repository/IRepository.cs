@@ -4,12 +4,12 @@ using System.Collections.Generic;
 
 namespace ASPCoreSample.Repository
 {
-    public interface IRepository<T> where T : BaseEntity
+    public interface IRepository
     {
-        void Add(T item);
+        void Add(Customer item);
         void Remove(int id);
-        void Update(T item);
-        T FindByID(int id);
-        IEnumerable<T> FindAll();
+        void Update(Customer item);
+        Customer FindByID(int id);
+        IEnumerable<Customer> FindAll();
     }
 }
