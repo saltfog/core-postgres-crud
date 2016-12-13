@@ -1,14 +1,14 @@
-﻿@model ASPCoreSample.Models.Customer
+﻿@model ASPCoreSample.Models.Falls
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create Water Fall";
 }
 
-<h2>Create</h2>
+<h2>Edit</h2>
 
-<form asp-action="Create">
+<form asp-action="Edit">
     <div class="form-horizontal">
-        <h4>Customer Information:</h4>
+        <h4>Water Fall Information:</h4>
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group">
@@ -19,29 +19,29 @@
             </div>
         </div>
         <div class="form-group">
-            <label asp-for="Email" class="col-md-2 control-label"></label>
+            <label asp-for="Description" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger" />
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger" />
             </div>
         </div>
         <div class="form-group">
-            <label asp-for="Phone" class="col-md-2 control-label"></label>
+            <label asp-for="OpenToPublic" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="Phone" class="form-control" />
-                <span asp-validation-for="Phone" class="text-danger" />
+                <input asp-for="OpenToPublic" class="form-control" />
+                <span asp-validation-for="OpenToPublic" class="text-danger" />
             </div>
         </div>
         <div class="form-group">
-            <label asp-for="Address" class="col-md-2 control-label"></label>
+            <label asp-for="County" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="Address" class="form-control" />
-                <span asp-validation-for="Address" class="text-danger" />
+                <input asp-for="County" class="form-control" />
+                <span asp-validation-for="County" class="text-danger" />
             </div>
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
     </div>

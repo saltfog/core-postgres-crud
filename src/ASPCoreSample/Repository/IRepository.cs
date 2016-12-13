@@ -6,10 +6,10 @@ namespace ASPCoreSample.Repository
 {
     public interface IRepository
     {
-        void Add(Customer item);
+        void Add(Falls item);
         void Remove(int id);
-        void Update(Customer item);
-        Customer FindByID(int id);
-        IEnumerable<Customer> FindAll();
+        void Update(Falls item);
+        Falls FindByID(int id);
+        IEnumerable<Falls> FindAll();
     }
 }

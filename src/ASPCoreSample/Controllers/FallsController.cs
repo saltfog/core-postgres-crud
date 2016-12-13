@@ -5,19 +5,19 @@ using ASPCoreSample.Repository;
 
 namespace ASPCoreSample.Controllers
 {
-    public class CustomerController : Controller
+    public class FallsController : Controller
     {
-        private readonly CustomerRepository customerRepository;
+        private readonly FallsRepository fallsRepository;
 
-        public CustomerController(IConfiguration configuration)
+        public FallsController(IConfiguration configuration)
         {
-            customerRepository = new CustomerRepository(configuration);
+            fallsRepository = new FallsRepository(configuration);
         }
 
 
         public IActionResult Index()
         {
-            return View(customerRepository.FindAll());
+            return View(fallsRepository.FindAll());
         }
 
         public IActionResult Create()
@@ -25,27 +25,27 @@ namespace ASPCoreSample.Controllers
             return View();
         }
 
-        // POST: Customer/Create
+        // POST: Falls/Create
         [HttpPost]
-        public IActionResult Create(Customer cust)
+        public IActionResult Create(Falls fall)
         {
             if (ModelState.IsValid)
             {
-                customerRepository.Add(cust);
+                fallsRepository.Add(fall);
                 return RedirectToAction("Index");
             }
-            return View(cust);
+            return View(fall);
 
         }
 
-        // GET: /Customer/Edit/1
+        // GET: /Falls/Edit/1
         public IActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-            Customer obj = customerRepository.FindByID(id.Value);
+            Falls obj = fallsRepository.FindByID(id.Value);
             if (obj == null)
             {
                 return NotFound();
@@ -54,20 +54,20 @@ namespace ASPCoreSample.Controllers
 
         }
 
-        // POST: /Customer/Edit   
+        // POST: /Falls/Edit   
         [HttpPost]
-        public IActionResult Edit(Customer obj)
+        public IActionResult Edit(Falls obj)
         {
 
             if (ModelState.IsValid)
             {
-                customerRepository.Update(obj);
+                fallsRepository.Update(obj);
                 return RedirectToAction("Index");
             }
             return View(obj);
         }
 
-        // GET:/Customer/Delete/1
+        // GET:/Falls/Delete/1
         public IActionResult Delete(int? id)
         {
 
@@ -75,7 +75,7 @@ namespace ASPCoreSample.Controllers
             {
                 return NotFound();
             }
-            customerRepository.Remove(id.Value);
+            fallsRepository.Remove(id.Value);
             return RedirectToAction("Index");
         }
     }
