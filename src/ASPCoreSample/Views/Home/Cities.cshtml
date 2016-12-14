@@ -1,0 +1,21 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div class="content">
+        <h1>Cities</h1>
+        <div>
+            <label>Name<input data-bind="value: newCityName" /></label>
+            <br />
+            <label>Country<select data-bind="value: selectedCountry, options: allCountries, optionsText: 'Name'"></select></label>
+            <br />
+            <button data-bind="click: newCity">create</button>
+        </div>
+        <hr />
+        <div data-bind="visible: loadingCities">Loading, please wait...</div>
+        <div data-bind="foreach: allCities">
+            <div data-bind="text: Name"></div>
+        </div>
+    </div>
+

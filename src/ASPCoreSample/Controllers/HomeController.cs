@@ -13,10 +13,8 @@ namespace ASPCoreSample.Controllers
             return View();
         }
 
-        public IActionResult About()
+        public IActionResult Cities()
         {
-            ViewData["Message"] = "Your application description page.";
-
             return View();
         }
 
