@@ -14,7 +14,6 @@ namespace ASPCoreSample.Controllers
             fallsRepository = new FallsRepository(configuration);
         }
 
-
         public IActionResult Index()
         {
             return View(fallsRepository.FindAll());

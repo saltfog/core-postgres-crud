@@ -11,7 +11,7 @@ namespace ASPCoreSample.Models
     {
         [Key]
         public int Id { get; set; }
-
+        [Display(Name = "Water Falls")]
         public string Name { get; set; }
 
         public string Datum { get; set; }

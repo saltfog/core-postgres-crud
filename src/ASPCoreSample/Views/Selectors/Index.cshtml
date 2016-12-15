@@ -1,0 +1,16 @@
+﻿@model IEnumerable<ASPCoreSample.Models.WaterFalls>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>@ViewBag.Message</h2>
+
+<p>
+@foreach (var c in Model)
+{
+    <p>
+    @c.WaterFallName;
+    </p>
+}
+
