@@ -55,6 +55,10 @@ namespace ASPCoreSample
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+
+                routes.MapWebApiRoute(
+                    name: "DefaultAPI",
+                    template: "v1/{controller}/{id}");
             });
         }
     }

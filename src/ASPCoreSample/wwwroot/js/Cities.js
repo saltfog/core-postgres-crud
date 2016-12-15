@@ -38,5 +38,3 @@ function Cities() {
         self.allCountries(data);
     });
 }
-
-ko.applyBindings(new Cities());
