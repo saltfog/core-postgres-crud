@@ -1,8 +1,8 @@
-﻿
+﻿@model ASPCoreSample.Models.CountryViewModel
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@*<script type='text/javascript' src='~/lib/knockout/dist/knockout.js'></script>
     <div class="content">
         <h1>Cities</h1>
         <div>
@@ -17,8 +17,9 @@
         <div data-bind="foreach: allCities">
             <div data-bind="text: Name"></div>
         </div>
-    </div>
+        <div>
+            
+        </div>
+    </div>*@
 
-<script>
-    ko.applyBindings(new Cities());
-</script>
+<select asp-for="Country" asp-items="Model.Countries"></select> 

@@ -3,19 +3,38 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using System.Data;
+using Npgsql;
+using ASPCoreSample.Models;
+using Dapper;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace ASPCoreSample.Controllers
 {
-    [Route("api/[controller]")]
+
     public class CountriesController : Controller
     {
-        // GET: api/values
-        [HttpGet]
-        public IEnumerable<string> Get()
+        private string connectionString;
+        public CountriesController(IConfiguration configuration)
         {
-            return new string[] { "value1", "value2" };
+            connectionString = configuration.GetValue<string>("DBInfo:ConnectionString");
+        }
+
+        internal IDbConnection Connection
+        {
+            get
+            {
+                return new NpgsqlConnection(connectionString);
+            }
+        }
+        // GET: api/values
+        public IActionResult Index()
+        {
+            var model = new CountryViewModel();
+            Connection.Query<CountryViewModel>("SELECT code, name FROM country").ToList();
+            return View(model);
         }
 
         // GET api/values/5

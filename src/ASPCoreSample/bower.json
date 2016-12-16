@@ -6,8 +6,6 @@
     "jquery": "2.2.0",
     "jquery-validation": "1.14.0",
     "jquery-validation-unobtrusive": "3.2.6",
-    "knockout": "3.4.0",
-    "angular": "1.5.5",
-    "angular-strap": "2.3.8"
+    "knockout": "3.4.0"
   }
 }

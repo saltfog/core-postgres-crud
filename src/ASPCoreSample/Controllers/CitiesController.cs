@@ -27,11 +27,13 @@ namespace ASPCoreSample.Controllers
                 return new NpgsqlConnection(connectionString);
             }
         }
+
         // GET api/<controller>
+        [HttpGet]
         public IEnumerable<City> Get()
         {
-            var cities = Connection.Query<City>("SELECT * FROM City");
-            return cities;
+            var cities = Connection.Query<City>("SELECT name, id, countrycode, population, district FROM city");
+            return cities.ToList();
         }
 
         // GET api/<controller>/5
