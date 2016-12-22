@@ -11,6 +11,7 @@ namespace ASPCoreSample.Models
     {
         [Key]
         public int Id { get; set; }
+
         [Display(Name = "Water Falls")]
         public string Name { get; set; }
 
@@ -26,10 +27,13 @@ namespace ASPCoreSample.Models
 
         public string County { get; set; }
 
-        public string OpenToPublic { get; set; }
+        [Required]
+        [Display(Name = "Open to Public")]
+        public char Open_To_Public { get; set; }
 
         public int OwnerId { get; set; }
 
+        [Required]
         public string Description { get; set; }
 
         public DateTimeOffset ConfirmedDate { get; set; }

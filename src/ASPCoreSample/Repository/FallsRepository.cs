@@ -33,7 +33,7 @@ namespace ASPCoreSample.Repository
         public IEnumerable<Falls> FindAll()
         {
 
-            return Connection.Query<Falls>("SELECT c.name, f.open_to_public, f.description, f.name FROM upfall f JOIN county c ON f.county_id = c.id order by f.name ASC");
+            return Connection.Query<Falls>("SELECT * FROM upfall f order by f.name ASC");
 
         }
 
