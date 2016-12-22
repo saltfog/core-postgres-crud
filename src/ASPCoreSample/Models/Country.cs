@@ -7,15 +7,9 @@ using System.Threading.Tasks;
 
 namespace ASPCoreSample.Models
 {
-    public class CountryViewModel
+    public class Country
     {
-        public string Country { get; set; }
 
-        public List<SelectListItem> Countries { get; } = new List<SelectListItem>
-        {
-            new SelectListItem { Value = "MX", Text = "Mexico" },
-            new SelectListItem { Value = "CA", Text = "Canada" },
-            new SelectListItem { Value = "US", Text = "USA"  },
-        };
+        public List<Country> Countries { get; } = new List<Country>();
     }
 }

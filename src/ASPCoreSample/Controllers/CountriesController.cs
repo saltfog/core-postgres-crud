@@ -13,7 +13,7 @@ using Dapper;
 
 namespace ASPCoreSample.Controllers
 {
-
+    [Route("api/[controller]")]
     public class CountriesController : Controller
     {
         private string connectionString;
@@ -30,11 +30,12 @@ namespace ASPCoreSample.Controllers
             }
         }
         // GET: api/values
-        public IActionResult Index()
+        [HttpGet]
+        public IEnumerable<Country> Index()
         {
-            var model = new CountryViewModel();
-            Connection.Query<CountryViewModel>("SELECT code, name FROM country").ToList();
-            return View(model);
+            var model = new Country().Countries;
+            model = Connection.Query<Country>("SELECT code, name FROM country").ToList();
+            return model;
         }
 
         // GET api/values/5
