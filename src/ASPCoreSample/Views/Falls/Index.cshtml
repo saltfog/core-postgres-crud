@@ -6,7 +6,7 @@
 @functions {
     
 }
-<h2 class="alert-info"> Water Falls</h2>
+<h2 class="active"> Water Falls</h2>
 
 <p>
     <a asp-action="Create">Create New Water Fall</a>
@@ -21,7 +21,10 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Open_To_Public)
-        </th>       
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ConfirmedDate)
+        </th>         
         <th></th>
     </tr>
 
@@ -36,6 +39,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Open_To_Public)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ConfirmedDate)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |              

@@ -19,6 +19,29 @@
             </div>
         </div>
         <div class="form-group">
+            <label asp-for="Open_To_Public" class="col-md-2 control-label"></label>
+            <div class="col-md-2">
+                <select class="form-control" asp-for="Open_To_Public">
+                    <option class="form-control" value="y">Yes</option>
+                    <option class="form-control" value="n">No</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Description" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <textarea class="form-control" asp-for="Description" rows="5" cols="40"></textarea>
+                <span asp-validation-for="Description" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ConfirmedDate" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="ConfirmedDate" class="form-control" />
+                <span asp-validation-for="ConfirmedDate" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>

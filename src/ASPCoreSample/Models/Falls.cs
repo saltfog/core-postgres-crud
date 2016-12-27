@@ -25,7 +25,7 @@ namespace ASPCoreSample.Models
 
         public float LatLong { get; set; }
 
-        public string County { get; set; }
+        public int County_Id { get; set; }
 
         [Required]
         [Display(Name = "Open to Public")]
@@ -34,8 +34,11 @@ namespace ASPCoreSample.Models
         public int OwnerId { get; set; }
 
         [Required]
+        [MaxLength(80)]
         public string Description { get; set; }
 
-        public DateTimeOffset ConfirmedDate { get; set; }
+        [Required]
+        [Display(Name = "Date Added")]
+        public DateTime ConfirmedDate { get; set; }
     }
 }
