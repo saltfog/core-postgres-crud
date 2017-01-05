@@ -2,6 +2,8 @@
 using Microsoft.Extensions.Configuration;
 using ASPCoreSample.Models;
 using ASPCoreSample.Repository;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace ASPCoreSample.Controllers
 {
@@ -37,45 +39,56 @@ namespace ASPCoreSample.Controllers
 
         }
 
-        // GET: /Falls/Edit/1
+        //GET: /Falls/Edit/1
         public IActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-            Falls obj = fallsRepository.FindByID(id.Value);
-            if (obj == null)
+            Falls fall = fallsRepository.FindByID(id.Value);
+            if (fall == null)
             {
                 return NotFound();
             }
-            return View(obj);
+            return View(fall);
 
         }
 
         // POST: /Falls/Edit   
         [HttpPost]
-        public IActionResult Edit(Falls obj)
+        public IActionResult Edit(Falls fall)
         {
-
             if (ModelState.IsValid)
             {
-                fallsRepository.Update(obj);
-                return RedirectToAction("Index");
+                fallsRepository.Update(fall);
+                return RedirectToAction("Index", "Falls");
             }
-            return View(obj);
+            else
+            {
+                return View(fall);
+            } 
         }
 
         // GET:/Falls/Delete/1
         public IActionResult Delete(int? id)
         {
-
             if (id == null)
             {
                 return NotFound();
             }
             fallsRepository.Remove(id.Value);
             return RedirectToAction("Index");
+        }
+
+        public IActionResult CheckForDuplicates(string name)
+        {
+            if(name.Contains(name))
+            {
+                return Json("Water Fall already exists");
+            }
+
+            return Json(true);
         }
     }
 }

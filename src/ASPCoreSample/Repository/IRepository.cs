@@ -11,5 +11,6 @@ namespace ASPCoreSample.Repository
         void Update(Falls item);
         Falls FindByID(int id);
         IEnumerable<Falls> FindAll();
+        Falls CheckForDuplicates(string name);
     }
 }

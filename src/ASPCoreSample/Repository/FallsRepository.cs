@@ -26,7 +26,7 @@ namespace ASPCoreSample.Repository
 
         public void Add(Falls item)
         {
-            Connection.Execute("INSERT INTO upfall (name,phone,email,address) VALUES(@Name,@Phone,@Email,@Address)", item);
+            Connection.Execute("INSERT INTO upfall (name, open_to_public, description, confirmeddate) VALUES(@Name, @Open_To_Public, @Description, @ConfirmedDate)", item);
 
         }
 
@@ -53,6 +53,13 @@ namespace ASPCoreSample.Repository
         public void Update(Falls item)
         {
             Connection.Query("UPDATE upfall SET name = @Name, open_to_public= @Open_To_Public, description= @Description WHERE id = @Id", item);
+
+        }
+
+        public Falls CheckForDuplicates(string name)
+        {
+
+           return Connection.Query<Falls>("SELECT name FROM upfall WHERE name = @Name", new { Name = name }).FirstOrDefault();
 
         }
     }

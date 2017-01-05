@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ASPCoreSample.Models
 {
@@ -12,6 +13,8 @@ namespace ASPCoreSample.Models
         [Key]
         public int Id { get; set; }
 
+        [Required]
+        [Remote("CheckForDuplicates", "Falls")]
         [Display(Name = "Water Falls")]
         public string Name { get; set; }
 

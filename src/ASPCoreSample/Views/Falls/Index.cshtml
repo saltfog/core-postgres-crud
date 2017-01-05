@@ -3,50 +3,56 @@
 @{
     ViewData["Title"] = "Index";
 }
-@functions {
-    
-}
-<h2 class="active"> Water Falls</h2>
+
+<h2 class="active">Water Falls</h2>
 
 <p>
-    <a asp-action="Create">Create New Water Fall</a>
+    <a asp-action="Create">Add Water Fall  <i class="fa fa-plus" aria-hidden="true"></i></a>
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Open_To_Public)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ConfirmedDate)
-        </th>         
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<table class="table table-hover table-striped">
+    <thead>
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Open_To_Public)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ConfirmedDate)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |              
-                <a asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Are sure wants to delete?');">Delete</a>
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Open_To_Public)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ConfirmedDate)
+            </th>
+            <th></th>
         </tr>
-    }
+     </thead>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <strong> @Html.DisplayFor(modelItem => item.Name) </strong>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @if (item.Open_To_Public.Equals("y"))
+                    {
+                        @Html.Display("Yes")
+                    }
+                    else
+                    {
+                        @Html.Display("No")
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ConfirmedDate)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id"><i class="fa fa-pencil" aria-hidden="true"></i></a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Are sure wants to delete?');"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                </td>
+            </tr>
+        }
 </table>
