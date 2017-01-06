@@ -10,13 +10,12 @@
     <div class="form-horizontal">
         <h4>Create a new Water Fall: </h4>
         <hr />
-        @Html.ValidationSummary(false)
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group">
             <label asp-for="Name" class="col-md-2 control-label"></label>
             <div class="col-md-10">
                 <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger" />
+                @*<span asp-validation-for="Name" class="text-danger" />*@
             </div>
         </div>
         <div class="form-group">
