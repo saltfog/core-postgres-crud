@@ -41,6 +41,7 @@ namespace ASPCoreSample.Models
         public string Description { get; set; }
 
         [Required]
+        [DataType(DataType.Date)] //Seems to add a datepicker sweet!
         [Display(Name = "Date Added")]
         public DateTime ConfirmedDate { get; set; }
     }

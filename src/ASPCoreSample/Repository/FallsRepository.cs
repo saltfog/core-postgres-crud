@@ -26,7 +26,7 @@ namespace ASPCoreSample.Repository
 
         public void Add(Falls item)
         {
-            Connection.Execute("INSERT INTO upfall (name, open_to_public, description, confirmeddate) VALUES(@Name, @Open_To_Public, @Description, @ConfirmedDate)", item);
+            Connection.Execute("INSERT INTO upfall (name, open_to_public, county_id description, confirmeddate) VALUES(@Name, @Open_To_Public, @County_Id @Description, @ConfirmedDate)", item);
 
         }
 
