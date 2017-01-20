@@ -14,7 +14,7 @@ namespace ASPCoreSample.Models
         public int Id { get; set; }
 
         [Required]
-        [Remote("CheckForDuplicates", "Falls")]
+        //[Remote("CheckForDuplicates", "Falls")]
         [Display(Name = "Water Falls")]
         public string Name { get; set; }
 
@@ -26,15 +26,15 @@ namespace ASPCoreSample.Models
 
         public int Eastling { get; set; }
 
-        public float LatLong { get; set; }
+        public float Lat_Long { get; set; }
 
         public int County_Id { get; set; }
 
         [Required]
         [Display(Name = "Open to Public")]
-        public char Open_To_Public { get; set; }
+        public string Open_To_Public { get; set; }
 
-        public int OwnerId { get; set; }
+        public int Owner_Id { get; set; }
 
         [Required]
         [MaxLength(80)]
@@ -43,6 +43,6 @@ namespace ASPCoreSample.Models
         [Required]
         [DataType(DataType.Date)] //Seems to add a datepicker sweet!
         [Display(Name = "Date Added")]
-        public DateTime ConfirmedDate { get; set; }
+        public DateTime Confirmed_Date { get; set; }
     }
 }

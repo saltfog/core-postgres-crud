@@ -52,7 +52,7 @@ namespace ASPCoreSample.Repository
 
         public void Update(Falls item)
         {
-            Connection.Query("UPDATE upfall SET name = @Name, open_to_public= @Open_To_Public, description= @Description WHERE id = @Id", item);
+            Connection.Query("UPDATE upfall SET name = @Name, datum = @Datum, zone = @Zone, northing = @Northing, easting = @Easting, lat_lon = @Lat_Lon, county_id = @County_Id, open_to_public = @Open_To_Public, owner_id = @Owner_Id, description = @Description, confirmed_date = @Confirmed_Date WHERE id = @Id", item);
 
         }
 

@@ -6,7 +6,7 @@
 
 <h2>Edit</h2>
 <div class="form-group">
-    <form asp-action="Edit">
+    <form asp-controller="Falls" asp-action="Edit">
         <div class="form-horizontal">
             <h4>Edit Water Fall Information:</h4>
             <hr />
@@ -15,7 +15,42 @@
                 <label asp-for="Name" class="col-md-2 control-label"></label>
                 <div class="col-md-10">
                     <input asp-for="Name" class="form-control" />
-                    @*<span asp-validation-for="Name" class="text-danger" />*@
+                    <span asp-validation-for="Name" class="text-danger" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Datum" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="Datum" class="form-control" />
+                    <span asp-validation-for="Datum" class="text-danger" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Zone" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="Zone" class="form-control" />
+                    <span asp-validation-for="Zone" class="text-danger" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Northing" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="Northing" class="form-control" />
+                    <span asp-validation-for="Northing" class="text-danger" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Lat_Long" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="Lat_Long" class="form-control" />
+                    <span asp-validation-for="Lat_Long" class="text-danger" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="County_Id" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="County_Id" class="form-control" />
+                    <span asp-validation-for="County_Id" class="text-danger" />
                 </div>
             </div>
             <div class="form-group">
@@ -28,6 +63,13 @@
                 </div>
             </div>
             <div class="form-group">
+                <label asp-for="Owner_Id" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="Owner_Id" class="form-control" />
+                    <span asp-validation-for="Owner_Id" class="text-danger" />
+                </div>
+            </div>
+            <div class="form-group">
                 <label asp-for="Description" class="col-md-2 control-label"></label>
                 <div class="col-md-10">
                     <textarea class="form-control" asp-for="Description" rows="5" cols="40"></textarea>
@@ -35,15 +77,14 @@
                 </div>
             </div>
             <div class="form-group">
-                <label asp-for="ConfirmedDate" class="col-md-2 control-label"></label>
+                <label asp-for="Confirmed_Date" class="col-md-2 control-label"></label>
                 <div class="col-md-10">
-                    <input asp-for="ConfirmedDate" class="form-control" />
-                    <span asp-validation-for="ConfirmedDate" class="text-danger" />
+                    <input asp-for="Confirmed_Date" class="form-control" />
+                    <span asp-validation-for="Confirmed_Date" class="text-danger" />
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <a asp-controller="Falls" asp-action="Edit"></a>
                     <input type="submit" value="Save" class="btn btn-default" />
                 </div>
             </div>
