@@ -26,7 +26,7 @@ namespace ASPCoreSample.Repository
 
         public void Add(Falls item)
         {
-            Connection.Execute("INSERT INTO upfall (name, open_to_public, county_id description, confirmeddate) VALUES(@Name, @Open_To_Public, @County_Id @Description, @ConfirmedDate)", item);
+            Connection.Execute("INSERT INTO upfall (id, name, open_to_public, description, confirmed_date) VALUES (@Name, @Open_To_Public, @Description, @Confirmed_Date)", item);
 
         }
 
@@ -40,26 +40,30 @@ namespace ASPCoreSample.Repository
         public Falls FindByID(int id)
         {
 
-            return Connection.Query<Falls>("SELECT * FROM upfall WHERE id = @Id", new { Id = id }).FirstOrDefault();
+            return Connection.Query<Falls>("SELECT * FROM upfall WHERE id = @id", new { id = id }).FirstOrDefault();
 
         }
 
         public void Remove(int id)
         {
-            Connection.Execute("DELETE FROM upfall WHERE Id = @Id", new { Id = id });
+            Connection.Execute("DELETE FROM upfall WHERE id = @id", new { id = id });
 
         }
 
         public void Update(Falls item)
         {
-            Connection.Query("UPDATE upfall SET name = @Name, datum = @Datum, zone = @Zone, northing = @Northing, easting = @Easting, lat_lon = @Lat_Lon, county_id = @County_Id, open_to_public = @Open_To_Public, owner_id = @Owner_Id, description = @Description, confirmed_date = @Confirmed_Date WHERE id = @Id", item);
+            using (IDbConnection dbConnection = Connection)
+            {
+                dbConnection.Open();
+                Connection.Execute("UPDATE upfall SET name = @name, datum = @datum, zone = @zone, northing = @northing, easting = @easting, lat_lon = @lat_lon, county_id = @county_id, open_to_public = @open_to_public, owner_id = @Owner_Id, description = @description, confirmed_date = @confirmed_date WHERE id = @id", item);
+            }
 
         }
 
         public Falls CheckForDuplicates(string name)
         {
 
-           return Connection.Query<Falls>("SELECT name FROM upfall WHERE name = @Name", new { Name = name }).FirstOrDefault();
+           return Connection.Query<Falls>("SELECT name FROM upfall WHERE name = @name", new { name = name }).FirstOrDefault();
 
         }
     }

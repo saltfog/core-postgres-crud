@@ -12,75 +12,77 @@
             <hr />
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Name" class="col-md-2 control-label"></label>
+                <label asp-for="name" class="col-md-2 control-label"></label>
                 <div class="col-md-10">
-                    <input asp-for="Name" class="form-control" />
-                    <span asp-validation-for="Name" class="text-danger" />
+                    <input asp-for="name" class="form-control" />
+                    <span asp-validation-for="name" class="text-danger" />
                 </div>
             </div>
             <div class="form-group">
-                <label asp-for="Datum" class="col-md-2 control-label"></label>
+                <label asp-for="datum" class="col-md-2 control-label"></label>
                 <div class="col-md-10">
-                    <input asp-for="Datum" class="form-control" />
-                    <span asp-validation-for="Datum" class="text-danger" />
+                    <input asp-for="datum" class="form-control" />
+                    <span asp-validation-for="datum" class="text-danger" />
                 </div>
             </div>
             <div class="form-group">
-                <label asp-for="Zone" class="col-md-2 control-label"></label>
+                <label asp-for="zone" class="col-md-2 control-label"></label>
                 <div class="col-md-10">
-                    <input asp-for="Zone" class="form-control" />
-                    <span asp-validation-for="Zone" class="text-danger" />
+                    <input asp-for="zone" class="form-control" />
+                    <span asp-validation-for="zone" class="text-danger" />
                 </div>
             </div>
             <div class="form-group">
-                <label asp-for="Northing" class="col-md-2 control-label"></label>
+                <label asp-for="northing" class="col-md-2 control-label"></label>
                 <div class="col-md-10">
-                    <input asp-for="Northing" class="form-control" />
-                    <span asp-validation-for="Northing" class="text-danger" />
+                    <input asp-for="northing" class="form-control" />
+                    <span asp-validation-for="northing" class="text-danger" />
                 </div>
             </div>
             <div class="form-group">
-                <label asp-for="Lat_Long" class="col-md-2 control-label"></label>
+                <label asp-for="lat_long" class="col-md-2 control-label"></label>
                 <div class="col-md-10">
-                    <input asp-for="Lat_Long" class="form-control" />
-                    <span asp-validation-for="Lat_Long" class="text-danger" />
+                    <input asp-for="lat_long" class="form-control" />
+                    <span asp-validation-for="lat_long" class="text-danger" />
                 </div>
             </div>
             <div class="form-group">
-                <label asp-for="County_Id" class="col-md-2 control-label"></label>
+                <label asp-for="county" class="col-md-2 control-label"></label>
                 <div class="col-md-10">
-                    <input asp-for="County_Id" class="form-control" />
-                    <span asp-validation-for="County_Id" class="text-danger" />
+                    @* Enum Select Tags Awesome *@
+                    @*<select class="form-control" asp-for="County" asp-items="Html.GetEnumSelectList<ASPCoreSample.Models.County>()"></select>*@
+                    <input asp-for="county" class="form-control" />
+                    <span asp-validation-for="county" class="text-danger" />
                 </div>
             </div>
             <div class="form-group">
-                    <label asp-for="Open_To_Public" class="col-md-2 control-label"></label>
+                    <label asp-for="open_to_public" class="col-md-2 control-label"></label>
                 <div class="col-md-2">
-                    <select class="form-control" asp-for="Open_To_Public">
+                    <select class="form-control" asp-for="open_to_public">
                         <option class="form-control" value="y">Yes</option>
                         <option class="form-control" value="n">No</option>
                     </select>
                 </div>
             </div>
             <div class="form-group">
-                <label asp-for="Owner_Id" class="col-md-2 control-label"></label>
+                <label asp-for="owner_id" class="col-md-2 control-label"></label>
                 <div class="col-md-10">
-                    <input asp-for="Owner_Id" class="form-control" />
-                    <span asp-validation-for="Owner_Id" class="text-danger" />
+                    <input asp-for="owner_id" class="form-control" />
+                    <span asp-validation-for="owner_id" class="text-danger" />
                 </div>
             </div>
             <div class="form-group">
-                <label asp-for="Description" class="col-md-2 control-label"></label>
+                <label asp-for="description" class="col-md-2 control-label"></label>
                 <div class="col-md-10">
-                    <textarea class="form-control" asp-for="Description" rows="5" cols="40"></textarea>
-                    <span asp-validation-for="Description" class="text-danger" />
+                    <textarea class="form-control" asp-for="description" rows="5" cols="40"></textarea>
+                    <span asp-validation-for="description" class="text-danger" />
                 </div>
             </div>
             <div class="form-group">
-                <label asp-for="Confirmed_Date" class="col-md-2 control-label"></label>
+                <label asp-for="confirmed_date" class="col-md-2 control-label"></label>
                 <div class="col-md-10">
-                    <input asp-for="Confirmed_Date" class="form-control" />
-                    <span asp-validation-for="Confirmed_Date" class="text-danger" />
+                    <input asp-for="confirmed_date" class="form-control" />
+                    <span asp-validation-for="confirmed_date" class="text-danger" />
                 </div>
             </div>
             <div class="form-group">

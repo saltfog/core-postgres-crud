@@ -13,16 +13,16 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                @Html.DisplayNameFor(model => model.name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Description)
+                @Html.DisplayNameFor(model => model.description)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Open_To_Public)
+                @Html.DisplayNameFor(model => model.open_to_public)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Confirmed_Date)
+                @Html.DisplayNameFor(model => model.confirmed_date)
             </th>
             <th></th>
         </tr>
@@ -31,27 +31,20 @@
         {
             <tr>
                 <td>
-                    <strong> @Html.DisplayFor(modelItem => item.Name) </strong>
+                    <strong> @Html.DisplayFor(modelItem => item.name) </strong>
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Description)
+                    @Html.DisplayFor(modelItem => item.description)
                 </td>
                 <td>
-                    @if (item.Open_To_Public.Equals("y"))
-                    {
-                        @Html.Display("Yes")
-                    }
-                    else
-                    {
-                        @Html.Display("No")
-                    }
+                    @Html.DisplayFor(modelItem => item.open_to_public)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Confirmed_Date)
+                    @Html.DisplayFor(modelItem => item.confirmed_date)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id"><i class="fa fa-pencil" aria-hidden="true"></i></a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Are sure wants to delete?');"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                    <a asp-action="Edit" asp-route-id="@item.id"><i class="fa fa-pencil" aria-hidden="true"></i></a> |
+                    <a asp-action="Delete" asp-route-id="@item.id" onclick="return confirm('Are sure wants to delete?');"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                 </td>
             </tr>
         }

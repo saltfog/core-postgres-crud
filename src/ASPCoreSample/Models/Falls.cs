@@ -11,38 +11,49 @@ namespace ASPCoreSample.Models
     public class Falls
     {
         [Key]
-        public int Id { get; set; }
+        public int id { get; set; }
 
         [Required]
         //[Remote("CheckForDuplicates", "Falls")]
         [Display(Name = "Water Falls")]
-        public string Name { get; set; }
+        public string name { get; set; }
 
-        public string Datum { get; set; }
+        public string datum { get; set; }
 
-        public int Zone { get; set; }
+        public int zone { get; set; }
 
-        public int Northing { get; set; }
+        public int northing { get; set; }
 
-        public int Eastling { get; set; }
+        public int eastling { get; set; }
 
-        public float Lat_Long { get; set; }
+        public float lat_long { get; set; }
 
-        public int County_Id { get; set; }
+        public int county { get; set; }
 
         [Required]
         [Display(Name = "Open to Public")]
-        public string Open_To_Public { get; set; }
+        public string open_to_public { get; set; }
 
-        public int Owner_Id { get; set; }
+        public int owner_id { get; set; }
 
         [Required]
         [MaxLength(80)]
-        public string Description { get; set; }
+        public string description { get; set; }
 
         [Required]
         [DataType(DataType.Date)] //Seems to add a datepicker sweet!
         [Display(Name = "Date Added")]
-        public DateTime Confirmed_Date { get; set; }
+        public DateTime confirmed_date { get; set; }
+    }
+
+    public enum County
+    {
+        Alger,
+        Baraga,
+        Ontonagon,
+        Dickinson,
+        Gogebic,
+        Delta
+
     }
 }
