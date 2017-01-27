@@ -5,10 +5,11 @@ using Dapper;
 using System.Data;
 using Npgsql;
 using ASPCoreSample.Models;
+using System;
 
 namespace ASPCoreSample.Repository
 {
-    public class FallsRepository
+    public class FallsRepository : IRepository
     {
         private string connectionString;
         public FallsRepository(IConfiguration configuration)
@@ -65,6 +66,17 @@ namespace ASPCoreSample.Repository
 
            return Connection.Query<Falls>("SELECT name FROM upfall WHERE name = @name", new { name = name }).FirstOrDefault();
 
+        }
+
+        public IEnumerable<Falls> Public()
+        {
+            return Connection.Query<Falls>("SELECT u.id, u.name FROM upfall u WHERE open_to_public = 'y' UNION SELECT u.id, u.name FROM upfall u JOIN owner o ON u.owner_id = o.id WHERE o.type = 'public' order by name ASC");
+
+        }
+
+        public IEnumerable<Falls> Private()
+        {
+            return Connection.Query<Falls>("SELECT u.id, u.name FROM upfall u WHERE open_to_public = 'n' order by u.name ASC");
         }
     }
 }

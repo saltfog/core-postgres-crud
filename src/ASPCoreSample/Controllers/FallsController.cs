@@ -18,7 +18,8 @@ namespace ASPCoreSample.Controllers
 
         public IActionResult Index()
         {
-            return View(fallsRepository.FindAll());
+            var list = fallsRepository.FindAll().ToList();
+            return View(list);
         }
 
         public IActionResult Create()
@@ -89,6 +90,11 @@ namespace ASPCoreSample.Controllers
             }
 
             return Json(true);
+        }
+
+        public IActionResult OpenToPublic()
+        {
+            return View(fallsRepository.Public());
         }
     }
 }

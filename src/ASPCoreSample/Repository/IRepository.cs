@@ -12,5 +12,7 @@ namespace ASPCoreSample.Repository
         Falls FindByID(int id);
         IEnumerable<Falls> FindAll();
         Falls CheckForDuplicates(string name);
+        IEnumerable<Falls> Public();
+        IEnumerable<Falls> Private();
     }
 }

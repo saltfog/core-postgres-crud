@@ -15,7 +15,7 @@ namespace ASPCoreSample.Models
 
         [Required]
         //[Remote("CheckForDuplicates", "Falls")]
-        [Display(Name = "Water Falls")]
+        [Display(Name = "Water Fall")]
         public string name { get; set; }
 
         public string datum { get; set; }
@@ -38,6 +38,7 @@ namespace ASPCoreSample.Models
 
         [Required]
         [MaxLength(80)]
+        [Display(Name = "Description")]
         public string description { get; set; }
 
         [Required]
