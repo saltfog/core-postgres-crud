@@ -55,6 +55,11 @@ namespace ASPCoreSample.Models
         Dickinson,
         Gogebic,
         Delta
+    }
 
+    public enum OpenToPublic
+    {
+        Yes,
+        No
     }
 }

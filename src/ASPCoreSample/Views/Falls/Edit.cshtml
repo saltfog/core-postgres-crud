@@ -50,18 +50,14 @@
                 <label asp-for="county" class="col-md-2 control-label"></label>
                 <div class="col-md-10">
                     @* Enum Select Tags Awesome *@
-                    @*<select class="form-control" asp-for="County" asp-items="Html.GetEnumSelectList<ASPCoreSample.Models.County>()"></select>*@
-                    <input asp-for="county" class="form-control" />
+                    <select class="form-control" asp-for="county" asp-items="Html.GetEnumSelectList<ASPCoreSample.Models.County>()"></select>
                     <span asp-validation-for="county" class="text-danger" />
                 </div>
             </div>
             <div class="form-group">
                     <label asp-for="open_to_public" class="col-md-2 control-label"></label>
                 <div class="col-md-2">
-                    <select class="form-control" asp-for="open_to_public">
-                        <option class="form-control" value="y">Yes</option>
-                        <option class="form-control" value="n">No</option>
-                    </select>
+                    <select class="form-control" asp-for="open_to_public" asp-items="Html.GetEnumSelectList<ASPCoreSample.Models.OpenToPublic>()"></select>
                 </div>
             </div>
             <div class="form-group">
