@@ -78,5 +78,10 @@ namespace ASPCoreSample.Repository
         {
             return Connection.Query<Falls>("SELECT u.id, u.name FROM upfall u WHERE open_to_public = 'n' order by u.name ASC");
         }
+
+        public IEnumerable<Falls> FallsByOwner()
+        {
+            return Connection.Query<Falls>("SELECT COALESCE(o.name, 'Unknown') AS owner, u.name AS fall FROM upfall u LEFT OUTER JOIN owner o ON u.owner_id = o.id ORDER BY (SELECT COUNT(*) FROM upfall u2 WHERE u2.owner_id = o.id) DESC, u.name");
+        }
     }
 }
