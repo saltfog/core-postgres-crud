@@ -1,16 +1,19 @@
-﻿@model IEnumerable<ASPCoreSample.Models.WaterFalls>
+﻿@model ASPCoreSample.Models.Selectors
 
 @{
     ViewData["Title"] = "Index";
+
 }
+<select class="form-control"  asp-for="WaterFallList" asp-items="Model.WaterFallList">
 
-<h2>@ViewBag.Message</h2>
+</select>
+<div class="form-group">
 
-<p>
-@foreach (var c in Model)
-{
-    <p>
-    @c.WaterFallName;
-    </p>
-}
+</div>
+<select class="form-control" asp-for="DescriptionList" asp-items="Model.DescriptionList">
 
+</select>
+
+@Html.DropDownListFor(m => m.WaterFallList, Model.WaterFallList, "Water Falls")
+
+@Html.DropDownList("WaterFallList", ViewBag.WaterFallList as IEnumerable<SelectListItem>, "(Select one)")
