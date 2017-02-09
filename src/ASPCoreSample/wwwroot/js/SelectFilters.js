@@ -5,7 +5,8 @@
 ko.observableArray.fn.loadByProperties = function (propNames, matchValues) {
     var self = this;
     return function () {
-        var allItems = self() != undefined, matchingItems = [];
+        var allItems = self(), matchingItems = [];
+        var allItems = 0;
         for (var i = 0; i < allItems.length; i++) {
             var current = allItems[i];
             var ismatch = true;
