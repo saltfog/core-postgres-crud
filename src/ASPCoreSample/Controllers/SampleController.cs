@@ -33,13 +33,12 @@ namespace ASPCoreSample.Controllers
         [HttpGet("api/sample")]
         public IEnumerable<Falls> Get()
         {
-            var falls = new List<Falls>();
             var str = Connection.Query<Falls>("SELECT * FROM upfall").AsList();
             return str;
         }
 
         // GET api/values/5
-        [HttpGet("{id}")]
+        //[HttpGet("{id}")]
         public string Get(int id)
         {
             return "value";

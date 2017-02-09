@@ -1,19 +1,120 @@
-﻿@model ASPCoreSample.Models.Selectors
-
-@{
-    ViewData["Title"] = "Index";
-
+﻿@{
+    ViewBag.Title = "Select A Home (ASP.NET MVC)";
 }
-<select class="form-control"  asp-for="WaterFallList" asp-items="Model.WaterFallList">
 
-</select>
-<div class="form-group">
+<h2>@ViewBag.Message</h2>
+<br />
 
-</div>
-<select class="form-control" asp-for="DescriptionList" asp-items="Model.DescriptionList">
+<!-- SELECT controls from the viewModel.selectFilters collection.
+    Each SELECT control is data-bound to one of the selectFilter objects.
+    'nameLabel', 'multiSelect', 'availableValues', 'value' and 'values' 
+    are all properties of the selectFilter object. -->
+<p data-bind="foreach: selectFilterVM.selectFilters">
+    <span style="font-weight:bold;vertical-align:top" 
+        data-bind="text: nameLabel"></span>
+    <select style="vertical-align:top" 
+        data-bind="attr: { multiple: multiSelect },
+                options: availableValues,
+                value: value,
+                selectedOptions: values" >
+    </select>&nbsp;
+</p>
+<br />
 
-</select>
+<!-- list the currently active filter values -->
+<ul data-bind="foreach: selectFilterVM.activeFilters">
+    <li>
+        <span style="font-weight:bold" data-bind="text: nameLabel"></span>
 
-@Html.DropDownListFor(m => m.WaterFallList, Model.WaterFallList, "Water Falls")
+        <span data-bind="text: valueText"></span>&nbsp;
 
-@Html.DropDownList("WaterFallList", ViewBag.WaterFallList as IEnumerable<SelectListItem>, "(Select one)")
+        <a href="#" data-bind="event:{ click: reset }">clear</a>
+    </li>
+</ul>
+
+<br />
+
+<!-- list the items in the filtered list -->
+<table>
+    <thead>
+        <tr>
+            <th>State</th>
+            <th>City</th>
+            <th>Zip</th>
+            <th>Address</th>
+            <th>Type</th>
+            <th>Beds</th>
+        </tr>
+    </thead>
+    <tbody data-bind="foreach: selectFilterVM.selectedItems">
+        <tr>
+            <td data-bind="text: id"></td>
+            <td data-bind="text: name"></td>
+            <td data-bind="text: datum"></td>
+            <td data-bind="text: open_to_public"></td>
+            <td data-bind="text: zone"></td>
+           
+        </tr>
+    </tbody>
+</table>
+
+@section scripts{
+<script type="text/javascript">
+    
+    // Define the filtering select controls this way.
+    // Parameters to selectFilter() are:
+    //   name:         name of property to filter on
+    //   parentName:   name of master select control's property
+    //   model:        the model object for this view
+    //   multiselect:  whether to allow selection of multiple values
+    function loadSelects(model) {
+        new selectFilter('id', '', model, 'id', true);
+        new selectFilter('name', 'id', model, 'name', false);
+        new selectFilter('datum', 'name', model, 'datum', true);
+        new selectFilter('open_to_public', 'datum', model, 'open', true);
+        new selectFilter('zone', 'open_to_public', model, 'zone', true);
+    }
+
+    // One way to load the list of objects to be filtered by this page.
+    // Another way wuld be with an ajax call, as in the ready() function below.
+    var AllItems = [
+        {State: "CA", City: "San Diego", Zip: "91210", Address: "1040 Porch Street", HomeType: "house", BRs: 3},
+        {State: "CA", City: "San Diego", Zip: "91215", Address: "2301 Kerry Road", HomeType: "house", BRs: 3},
+        {State: "CA", City: "San Diego", Zip: "91216", Address: "8410 Beccah Street Apt. 10", HomeType: "apartment", BRs: 2},
+        {State: "CA", City: "San Diego", Zip: "91216", Address: "8410 Beccah Street Apt. 22", HomeType: "apartment", BRs: 2},
+        {State: "CA", City: "Los Angeles", Zip: "90211", Address: "8735 Madoff Street", HomeType: "house", BRs: 3},
+        {State: "CA", City: "Los Angeles", Zip: "90212", Address: "2343 Tacky Drive", HomeType: "house", BRs: 4},
+        {State: "CA", City: "Los Angeles", Zip: "90213", Address: "3827 Pauly Road Apt. 103", HomeType: "apartment", BRs: 2},
+        {State: "CA", City: "Los Angeles", Zip: "90213", Address: "2367 Traffic Way", HomeType: "condo", BRs: 3},
+        {State: "CA", City: "San Fransisco", Zip: "92272", Address: "776 Haight Street", HomeType: "house", BRs: 2},
+        {State: "CA", City: "San Fransisco", Zip: "92273", Address: "253 Ashbury Street", HomeType: "house", BRs: 3},
+        {State: "NV", City: "Las Vegas", Zip: "89101", Address: "876 Gambler Way Apt. A", HomeType: "apartment", BRs: 3},
+        {State: "NV", City: "Las Vegas", Zip: "89102", Address: "543 Hot Streak Avenue", HomeType: "condo", BRs: 3 }
+    ];
+
+
+    // We added this simple top-level model to separate the knockout 
+    // viewmodel from the select-filter sub-model.  It's easy to add 
+    // other knockout variables and bindings to this view model if 
+    // needed for other controls on the page.
+    var viewModel = function() {
+        this.selectFilterVM = new sfViewModel(this);
+    };
+
+
+    $(document).ready(function () {
+        var model = new viewModel();
+        // specify the method to load the select filters.
+        model.selectFilterVM.loadSelectsFunc = loadSelects;
+
+        // To load the item list with an ajax call, uncomment this line and comment out the one below it.
+        // Load homes collection from server, then populate allItems
+        $.getJSON("api/sample", model.selectFilterVM.loadData(model.selectFilterVM));  // Change the URL as needed.
+
+        // To load the items from a local javascript array, uncomment this line and comment out the previous one.
+        //model.selectFilterVM.loadListFromArray({ AllItems: AllItems} );
+
+    }); jQuery();
+
+</script>
+    }
