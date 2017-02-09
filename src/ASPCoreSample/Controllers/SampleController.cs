@@ -11,7 +11,7 @@ using Dapper;
 
 namespace ASPCoreSample.Controllers
 {
-    [Route("api/[controller]")]
+   
     public class SampleController : Controller
     {
         private string connectionString;
@@ -30,7 +30,7 @@ namespace ASPCoreSample.Controllers
         }
 
         // GET: api/values
-        [HttpGet]
+        [HttpGet("api/sample")]
         public IEnumerable<Falls> Get()
         {
             var falls = new List<Falls>();
