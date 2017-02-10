@@ -3,6 +3,26 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@*<input class="form-control" type="search" name="searchTerm" data-autocomplete="@Url.Action("SearchResults", "Sample")" />
+<input type="submit" id="submitForm" value="Search By Name" />
+
+
+@section scripts
+{
+    <script>
+        var createAutocomplete = function () {
+            var self = $(this);
+            var options = {
+                source: self.attr("data-autocomplete")
+            };
+            self.autocomplete(options);
+        }
+
+        $(document).ready(function () {
+            $("input[data-autocomplete]").each(createAutocomplete);
+        });
+    </script>
+}*@
 <h2>Knockout Autocomplete</h2>
 
 <div id="content-wrapper">

@@ -38,9 +38,10 @@ namespace ASPCoreSample.Controllers
 
         // GET: api/values
         [HttpGet("api/sample")]
-        public IActionResult SearchResults()
+        public IActionResult SearchResults(string query)
         {
-            var results = Connection.Query<Search>("SELECT name FROM upfall").AsList();
+            var results = Connection.Query<Search>("SELECT name FROM upfall order by name").ToList();
+            var fetch = results.Where(m => m.Name.ToLower().StartsWith(query.ToLower()));
             return Content(JsonConvert.SerializeObject(results, new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() }));
         }
 
