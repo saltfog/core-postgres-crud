@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
         <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.css" />
+        <link href="~/css/ko.binding.css" rel="stylesheet" />
     </environment>
     <environment names="Staging,Production">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css"
@@ -44,7 +45,7 @@
                                         <a asp-controller="Falls" asp-action="OpenToPublic">Open To Public</a>
                                     </li>
                                     <li>
-                                        <a href="#">Something else here</a>
+                                        <a asp-controller="Sample" asp-action="Search">Search</a>
                                     </li>
                                     <li>
                                         <a href="#">Separated link</a>
@@ -101,6 +102,7 @@
 
     <environment names="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/jquery-ui/jquery-ui.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
         <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>

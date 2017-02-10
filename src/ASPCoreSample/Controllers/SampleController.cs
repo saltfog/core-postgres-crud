@@ -8,6 +8,8 @@ using Microsoft.Extensions.Configuration;
 using System.Data;
 using Npgsql;
 using Dapper;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace ASPCoreSample.Controllers
 {
@@ -29,13 +31,19 @@ namespace ASPCoreSample.Controllers
             }
         }
 
+        public IActionResult Search()
+        {
+            return View();
+        }
+
         // GET: api/values
         [HttpGet("api/sample")]
-        public IEnumerable<Falls> Get()
+        public IActionResult SearchResults()
         {
-            var str = Connection.Query<Falls>("SELECT * FROM upfall").AsList();
-            return str;
+            var results = Connection.Query<Search>("SELECT name FROM upfall").AsList();
+            return Content(JsonConvert.SerializeObject(results, new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() }));
         }
+
 
         // GET api/values/5
         //[HttpGet("{id}")]
