@@ -56,7 +56,7 @@ namespace ASPCoreSample.Controllers
 
         }
 
-        // POST: /Falls/Edit   
+        // POST: /Falls/Edit
         [HttpPost]
         public IActionResult Edit(Falls fall)
         {
@@ -68,7 +68,7 @@ namespace ASPCoreSample.Controllers
             else
             {
                 return View(fall);
-            } 
+            }
         }
 
         // GET:/Falls/Delete/1

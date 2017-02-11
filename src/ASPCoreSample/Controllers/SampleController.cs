@@ -13,7 +13,7 @@ using Newtonsoft.Json.Serialization;
 
 namespace ASPCoreSample.Controllers
 {
-   
+
     public class SampleController : Controller
     {
         private string connectionString;
@@ -41,16 +41,16 @@ namespace ASPCoreSample.Controllers
         public IActionResult SearchResults(string query)
         {
             var results = Connection.Query<Search>("SELECT name FROM upfall order by name").ToList();
-            var fetch = results.Where(m => m.Name.ToLower().StartsWith(query.ToLower()));
+            var fetch = results.Where(m => m.name.ToLower().StartsWith(query.ToLower()));
             return Content(JsonConvert.SerializeObject(results, new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() }));
         }
 
-
-        // GET api/values/5
-        //[HttpGet("{id}")]
-        public string Get(int id)
+        //http://localhost:54842/api/allfalls
+        [HttpGet("api/allfalls")]
+        public List<Search> GetKnockOut()
         {
-            return "value";
+            var results = Connection.Query<Search>("SELECT * FROM upfall order by name").ToList();
+            return results;
         }
 
         // POST api/values

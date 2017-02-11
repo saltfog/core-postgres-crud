@@ -7,12 +7,12 @@
 
 <!-- SELECT controls from the viewModel.selectFilters collection.
     Each SELECT control is data-bound to one of the selectFilter objects.
-    'nameLabel', 'multiSelect', 'availableValues', 'value' and 'values' 
+    'nameLabel', 'multiSelect', 'availableValues', 'value' and 'values'
     are all properties of the selectFilter object. -->
 <p data-bind="foreach: selectFilterVM.selectFilters">
-    <span style="font-weight:bold;vertical-align:top" 
+    <span style="font-weight:bold;vertical-align:top"
         data-bind="text: nameLabel"></span>
-    <select style="vertical-align:top" 
+    <select style="vertical-align:top"
         data-bind="attr: { multiple: multiSelect },
                 options: availableValues,
                 value: value,
@@ -53,14 +53,14 @@
             <td data-bind="text: datum"></td>
             <td data-bind="text: open_to_public"></td>
             <td data-bind="text: zone"></td>
-           
+
         </tr>
     </tbody>
 </table>
 
 @section scripts{
 <script type="text/javascript">
-    
+
     // Define the filtering select controls this way.
     // Parameters to selectFilter() are:
     //   name:         name of property to filter on
@@ -79,9 +79,9 @@
     // Another way wuld be with an ajax call, as in the ready() function below.
 
 
-    // We added this simple top-level model to separate the knockout 
-    // viewmodel from the select-filter sub-model.  It's easy to add 
-    // other knockout variables and bindings to this view model if 
+    // We added this simple top-level model to separate the knockout
+    // viewmodel from the select-filter sub-model.  It's easy to add
+    // other knockout variables and bindings to this view model if
     // needed for other controls on the page.
     var viewModel = function() {
         this.selectFilterVM = new sfViewModel(this);
@@ -95,10 +95,24 @@
 
         // To load the item list with an ajax call, uncomment this line and comment out the one below it.
         // Load homes collection from server, then populate allItems
-        $.getJSON("api/sample", model.selectFilterVM.loadData(model.selectFilterVM));  // Change the URL as needed.
+        $.getJSON("api/allfalls", model.selectFilterVM.loadData(model.selectFilterVM));  // Change the URL as needed.
 
         // To load the items from a local javascript array, uncomment this line and comment out the previous one.
         //model.selectFilterVM.loadListFromArray({ AllItems: AllItems} );
+        var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "http://localhost:54842/api/allfalls",
+            "method": "GET",
+            "headers": {
+                "cache-control": "no-cache"
+            }
+        }
+
+        $.ajax(settings).done(function (response) {
+            console.log(response);
+        });
+
 
     }); jQuery();
 

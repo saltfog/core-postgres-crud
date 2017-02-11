@@ -3,53 +3,101 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@*<input class="form-control" type="search" name="searchTerm" data-autocomplete="@Url.Action("SearchResults", "Sample")" />
-<input type="submit" id="submitForm" value="Search By Name" />
+@{
+    ViewBag.Title = "Knock Out";
+}
+<h2>@ViewBag.Message</h2>
+<br />
+<!-- SELECT controls from the viewModel.selectFilters collection.
+    Each SELECT control is data-bound to one of the selectFilter objects.
+    'nameLabel', 'multiSelect', 'availableValues', 'value' and 'values'
+    are all properties of the selectFilter object. -->
+<p data-bind="foreach: selectFilterVM.selectFilters">
+    <span style="font-weight:bold;vertical-align:top"
+          data-bind="text: nameLabel"></span>
+    <select style="vertical-align:top"
+            data-bind="attr: { multiple: multiSelect },
+                options: availableValues,
+                value: value,
+                selectedOptions: values"></select>&nbsp;
+</p>
+<br />
+<!-- list the currently active filter values -->
+<ul data-bind="foreach: selectFilterVM.activeFilters">
+    <li>
+        <span style="font-weight:bold" data-bind="text: nameLabel"></span>
+        <span data-bind="text: valueText"></span>&nbsp;
 
+        <a href="#" data-bind="event:{ click: reset }">clear</a>
+    </li>
+</ul>
+<br />
+<!-- list the items in the filtered list -->
+<table>
+    <thead>
+        <tr>
+            <th>State</th>
+            <th>City</th>
+            <th>Zip</th>
+            <th>Address</th>
+            <th>Type</th>
+            <th>Beds</th>
+        </tr>
+    </thead>
+    <tbody data-bind="foreach: selectFilterVM.selectedItems">
+        <tr>
+            <td data-bind="text: id"></td>
+            <td data-bind="text: name"></td>
+            <td data-bind="text: datum"></td>
+            <td data-bind="text: open_to_public"></td>
+            <td data-bind="text: zone"></td>
 
-@section scripts
-{
-    <script>
-        var createAutocomplete = function () {
-            var self = $(this);
-            var options = {
-                source: self.attr("data-autocomplete")
-            };
-            self.autocomplete(options);
-        }
-
-        $(document).ready(function () {
-            $("input[data-autocomplete]").each(createAutocomplete);
-        });
-    </script>
-}*@
-<h2>Knockout Autocomplete</h2>
-
-<div id="content-wrapper">
-    <input type="text" data-bind="autoComplete: search, settings: { url : '@Url.Action("SearchResults", "Sample")', selectCallback : selectItemCallback}" />
-</div>
-@section scripts
-{
+        </tr>
+    </tbody>
+</table>
+@section scripts{
     <script type="text/javascript">
 
-        (function() {
-            function viewModel() {
-                var self = this;
-                //throttle only so we dont send requests to server
-                //every key down
-                self.search = ko.observable('').extend({ throttle: 300 });
+    // Define the filtering select controls this way.
+    // Parameters to selectFilter() are:
+    //   name:         name of property to filter on
+    //   parentName:   name of master select control's property
+    //   model:        the model object for this view
+    //   multiselect:  whether to allow selection of multiple values
+    function loadSelects(model) {
+        new selectFilter('id', '', model, 'id', true);
+        new selectFilter('name', 'id', model, 'name', false);
+        new selectFilter('datum', 'name', model, 'datum', true);
+        new selectFilter('open_to_public', 'datum', model, 'open', true);
+        new selectFilter('zone', 'open_to_public', model, 'zone', true);
+    }
 
-                //item select callback function
-                self.selectItemCallback = function (data) {
-                    //dosomething with the selected item
-                    console.log(data);
-                };
-            };
+    // One way to load the list of objects to be filtered by this page.
+    // Another way wuld be with an ajax call, as in the ready() function below.
 
-            //apply bindings
-            ko.applyBindings(new viewModel(), document.getElementById('content-wrapper'));
 
-        })();
+    // We added this simple top-level model to separate the knockout
+    // viewmodel from the select-filter sub-model.  It's easy to add
+    // other knockout variables and bindings to this view model if
+    // needed for other controls on the page.
+    var viewModel = function() {
+        this.selectFilterVM = new sfViewModel(this);
+    };
+
+
+    $(document).ready(function () {
+        var model = new viewModel();
+        // specify the method to load the select filters.
+        model.selectFilterVM.loadSelectsFunc = loadSelects;
+
+        // To load the item list with an ajax call, uncomment this line and comment out the one below it.
+        // Load homes collection from server, then populate allItems
+        $.getJSON("/api/allfalls", model.selectFilterVM.loadData(model.selectFilterVM));  // Change the URL as needed.
+
+        // To load the items from a local javascript array, uncomment this line and comment out the previous one.
+        //model.selectFilterVM.loadListFromArray({ AllItems: AllItems} );
+
+    }); jQuery();
 
     </script>
 }

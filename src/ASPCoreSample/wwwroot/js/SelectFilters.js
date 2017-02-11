@@ -1,12 +1,11 @@
 ﻿
-// This knockout custom class function was added to take an array 
-// of property names and corresponding values and return an array of 
+// This knockout custom class function was added to take an array
+// of property names and corresponding values and return an array of
 // all objects that match one or more of the values for each passed property.
 ko.observableArray.fn.loadByProperties = function (propNames, matchValues) {
     var self = this;
     return function () {
-        var allItems = self(), matchingItems = [];
-        var allItems = 0;
+        var allItems = self() || '', matchingItems = [];
         for (var i = 0; i < allItems.length; i++) {
             var current = allItems[i];
             var ismatch = true;
@@ -46,11 +45,11 @@ function selectFilter(selectName, parentName, viewmodel, label, multi) {
 
     this.values = new ko.observableArray();             // selected values if multiselect
 
-    this.availableValues = new ko.observableArray();    // the option list for this select box.  An observableArray can 
+    this.availableValues = new ko.observableArray();    // the option list for this select box.  An observableArray can
                                                         // be data-bound to a control on the page for automatic updating.
 
     this.availableItems = new ko.observableArray();     // filtered list of selected items after filtering by this SELECT.
-                                                        // this list is read by any child filter-selects to determine 
+                                                        // this list is read by any child filter-selects to determine
                                                         // available options.
 
     this.model.registerFilter(this);                    // add this filter to the list
@@ -95,7 +94,7 @@ function selectFilter(selectName, parentName, viewmodel, label, multi) {
     // Get property value options available for this SELECT
     // and load them into the availableValues array.
     this.getAvailableValues = function (items) {
-        var matchingValues = [];
+        var matchingValues = [], items = '';
         for (var i = 0; i < items.length; i++) {
             var current = items[i][this.name];
             if (matchingValues.indexOf(current) == -1)
@@ -178,7 +177,7 @@ function sfViewModel(_parent) {
         }
     }
 
-    
+
     // Load homes collection from javascript array
     this.loadListFromArray = function (data) {
         this.loadData(this)(data);
