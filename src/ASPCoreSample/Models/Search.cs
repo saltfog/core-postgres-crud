@@ -8,10 +8,11 @@ namespace ASPCoreSample.Models
 {
     public class Search
     {
-        [Key]
-        int id { get; set; }
+
         public string name { get; set; }
-        public int county { get; set; }
+        public int zone { get; set; }
         public string open_to_public { get; set; }
+
+        public List<Search> AllItems = new List<Search>();
     }
 }

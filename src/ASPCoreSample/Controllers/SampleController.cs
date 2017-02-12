@@ -49,8 +49,9 @@ namespace ASPCoreSample.Controllers
         [HttpGet("api/allfalls")]
         public List<Search> GetKnockOut()
         {
-            var results = Connection.Query<Search>("SELECT * FROM upfall order by name").ToList();
-            return results;
+            //List<Search> AllItems;
+            var AllItems = Connection.Query<Search>("SELECT name, zone, open_to_public FROM upfall order by name").ToList();
+            return AllItems;
         }
 
         // POST api/values
