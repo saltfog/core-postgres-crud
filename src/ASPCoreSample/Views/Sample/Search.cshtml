@@ -25,7 +25,7 @@
                 </ul>
             </div>
             <div class="col-md-offset-6">
-                <table class="table table-striped table-hover table-condensed table-bordered">
+                <table data-bind="visible: selectFilterVM.selectedItems < 0" class="table table-striped table-hover table-condensed table-bordered">
                     <thead>
                         <tr>
                             <th>
@@ -79,9 +79,9 @@
         new selectFilter('open_to_public', 'zone', model, 'Open', false);
     }
 
-    // One way to load the list of objects to be filtered by this page.
-    // Another way wuld be with an ajax call, as in the ready() function below.
-  //  var AllItems = [
+     //One way to load the list of objects to be filtered by this page.
+     //Another way wuld be with an ajax call, as in the ready() function below.
+
 
 
   //{
@@ -169,7 +169,7 @@
   //  ];
 
 
-    var AllItems = [ ];
+
     // We added this simple top-level model to separate the knockout
     // viewmodel from the select-filter sub-model.  It's easy to add
     // other knockout variables and bindings to this view model if
@@ -179,6 +179,7 @@
     };
 
 
+    var AllItems = [];
     $(document).ready(function () {
         var model = new viewModel();
         // specify the method to load the select filters.
@@ -186,10 +187,17 @@
 
         // To load the item list with an ajax call, uncomment this line and comment out the one below it.
         // Load homes collection from server, then populate allItems
-        $.getJSON("/api/allfalls", model.selectFilterVM.loadData(model.selectFilterVM));  // Change the URL as needed.
+        //$.getJSON("/api/allfalls", model.selectFilterVM.loadData);  // Change the URL as needed.
+
+        $.ajax("/api/allfalls", {
+            type: "GET",
+            cache: false,
+        }).done(function (jsondata) {
+            model.selectFilterVM.loadListFromArray( { AllItems: AllItems });
+        });
 
         // To load the items from a local javascript array, uncomment this line and comment out the previous one.
-        model.selectFilterVM.loadListFromArray({ AllItems: AllItems} );
+        //model.selectFilterVM.loadListFromArray({ AllItems: AllItems} );
 
     }); jQuery();
 

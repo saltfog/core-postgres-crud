@@ -47,11 +47,11 @@ namespace ASPCoreSample.Controllers
 
         //http://localhost:54842/api/allfalls
         [HttpGet("api/allfalls")]
-        public List<Search> GetKnockOut()
+        public JsonResult GetKnockOut()
         {
             //List<Search> AllItems;
-            var AllItems = Connection.Query<Search>("SELECT name, zone, open_to_public FROM upfall order by name").ToList();
-            return AllItems;
+            var results = Connection.Query<Search>("SELECT name, zone, open_to_public FROM upfall order by name").ToList();
+            return Json(results);
         }
 
         // POST api/values
