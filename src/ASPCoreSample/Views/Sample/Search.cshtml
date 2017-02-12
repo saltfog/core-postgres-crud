@@ -187,13 +187,13 @@
 
         // To load the item list with an ajax call, uncomment this line and comment out the one below it.
         // Load homes collection from server, then populate allItems
-        //$.getJSON("/api/allfalls", model.selectFilterVM.loadData);  // Change the URL as needed.
+        //$.getJSON("/api/allfalls", model.selectFilterVM.loadListFromArray());  // Change the URL as needed.
 
         $.ajax("/api/allfalls", {
             type: "GET",
             cache: false,
         }).done(function (jsondata) {
-            model.selectFilterVM.loadListFromArray( { AllItems: AllItems });
+            model.selectFilterVM.loadListFromArray( { AllItems: jsondata });
         });
 
         // To load the items from a local javascript array, uncomment this line and comment out the previous one.
