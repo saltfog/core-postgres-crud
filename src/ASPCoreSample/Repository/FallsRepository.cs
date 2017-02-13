@@ -34,7 +34,7 @@ namespace ASPCoreSample.Repository
         public IEnumerable<Falls> FindAll()
         {
 
-            return Connection.Query<Falls>("SELECT * FROM upfall f order by f.name ASC");
+            return Connection.Query<Falls>("SELECT f.*, CASE WHEN f.open_to_public = 'y' THEN 'Yes' ELSE 'No' END AS open_to_public FROM upfall f order by f.name ASC");
 
         }
 

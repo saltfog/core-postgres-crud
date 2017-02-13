@@ -25,37 +25,18 @@
                 </ul>
             </div>
             <div class="col-md-offset-6">
-                <table data-bind="visible: selectFilterVM.selectedItems < 0" class="table table-striped table-hover table-condensed table-bordered">
+                <table class="table table-striped table-hover table-condensed table-bordered">
                     <thead>
                         <tr>
                             <th>
-                                Name
+                                Water Fall
                             </th>
-                            <th>
-                                Zone
-                            </th>
-                            <th>
-                                Open
-                            </th>
-                            @*<th>
-                                Address
-                            </th>
-                            <th>
-                                Type
-                            </th>
-                            <th>
-                                BedRooms
-                            </th>*@
                         </tr>
                     </thead>
                     <tbody data-bind="foreach: selectFilterVM.selectedItems">
                         <tr>
+                            @*<td data-bind="text: open_to_public"></td>*@
                             <td data-bind="text: name"></td>
-                            <td data-bind="text: zone"></td>
-                            <td data-bind="text: open_to_public"></td>
-                            @*<td data-bind="text: Address"></td>
-                            <td data-bind="text: HomeType"></td>
-                            <td data-bind="text: BRs"></td>*@
                         </tr>
                     </tbody>
                 </table>
@@ -74,9 +55,8 @@
     //   model:        the model object for this view
     //   multiselect:  whether to allow selection of multiple values
     function loadSelects(model) {
-        new selectFilter('name', '', model, 'Name', false);
-        new selectFilter('zone', 'name', model, 'Zone', false);
-        new selectFilter('open_to_public', 'zone', model, 'Open', false);
+        new selectFilter('open_to_public', '', model, 'Open To Public', false);
+        //new selectFilter('name', 'open_to_public', model, 'Name', false);
     }
 
     var viewModel = function() {

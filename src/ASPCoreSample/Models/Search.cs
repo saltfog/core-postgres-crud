@@ -10,10 +10,6 @@ namespace ASPCoreSample.Models
     {
 
         public string name { get; set; }
-        public int zone { get; set; }
         public string open_to_public { get; set; }
-
-        //public List<Search> results = new List<Search>();
-
     }
 }

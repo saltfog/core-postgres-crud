@@ -49,8 +49,7 @@ namespace ASPCoreSample.Controllers
         [HttpGet("api/allfalls")]
         public JsonResult GetKnockOut()
         {
-            //List<Search> AllItems;
-            var results = Connection.Query<Search>("SELECT name, zone, open_to_public FROM upfall order by name").ToList();
+            var results = Connection.Query<Search>("SELECT name, zone, CASE WHEN open_to_public = 'y' THEN 'Yes' ELSE 'No' END AS open_to_public FROM upfall order by name").ToList();
             return Json(results);
         }
 
