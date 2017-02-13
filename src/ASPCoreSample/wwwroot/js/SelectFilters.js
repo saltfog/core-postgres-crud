@@ -58,7 +58,7 @@ function selectFilter(selectName, parentName, viewmodel, label, multi) {
 
 
     // for single select dropdown, returns default value
-    this.defaultValue = function () { return 'Select' + this.nameLabel.replace(':', '') + '..'; }
+    this.defaultValue = function () { return 'Select..'; }
 
 
     // returns an array of any selected values, whether multiselect or not

@@ -8,7 +8,6 @@ namespace ASPCoreSample.Models
 {
     public class Search
     {
-
         public string name { get; set; }
         public string open_to_public { get; set; }
     }

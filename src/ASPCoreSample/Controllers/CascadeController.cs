@@ -14,11 +14,11 @@ using Newtonsoft.Json.Serialization;
 namespace ASPCoreSample.Controllers
 {
 
-    public class SampleController : Controller
+    public class CascadeController : Controller
     {
         private string connectionString;
 
-        public SampleController(IConfiguration configuration)
+        public CascadeController(IConfiguration configuration)
         {
             connectionString = configuration.GetValue<string>("DBInfo:ConnectionString");
         }
@@ -47,7 +47,7 @@ namespace ASPCoreSample.Controllers
 
         //http://localhost:54842/api/allfalls
         [HttpGet("api/allfalls")]
-        public JsonResult GetKnockOut()
+        public JsonResult GetListForCascade()
         {
             var results = Connection.Query<Search>("SELECT name, zone, CASE WHEN open_to_public = 'y' THEN 'Yes' ELSE 'No' END AS open_to_public FROM upfall order by name").ToList();
             return Json(results);
