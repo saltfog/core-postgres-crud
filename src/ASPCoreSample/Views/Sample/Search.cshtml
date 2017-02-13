@@ -79,107 +79,12 @@
         new selectFilter('open_to_public', 'zone', model, 'Open', false);
     }
 
-     //One way to load the list of objects to be filtered by this page.
-     //Another way wuld be with an ajax call, as in the ready() function below.
-
-
-
-  //{
-  //    "name": "Agate Falls",
-  //    "zone": 45,
-  //    "open_to_public": "y"
-  //},
-  //{
-  //    "name": "Alger Falls",
-  //    "zone": 23,
-  //    "open_to_public": "y"
-  //},
-  //{
-  //    "name": "Bond Falls",
-  //    "zone": 1,
-  //    "open_to_public": "n"
-  //},
-  //{
-  //    "name": "Canyon Falls",
-  //    "zone": 45,
-  //    "open_to_public": "n"
-  //},
-  //{
-  //    "name": "Fumee Falls",
-  //    "zone": 1,
-  //    "open_to_public": "y"
-  //},
-  //{
-  //    "name": "Horseshoe Falls",
-  //    "zone": 16,
-  //    "open_to_public": "n"
-  //},
-  //{
-  //    "name": "Kakabika Falls",
-  //    "zone": 6,
-  //    "open_to_public": "y"
-  //},
-  //{
-  //    "name": "Little Miners",
-  //    "zone": 23,
-  //    "open_to_public": "y"
-  //},
-  //{
-  //    "name": "Miners Falls",
-  //    "zone": 23,
-  //    "open_to_public": "n"
-  //},
-  //{
-  //    "name": "Munising Falls",
-  //    "zone": 16,
-  //    "open_to_public": "y"
-  //},
-  //{
-  //    "name": "Rapid River Fls",
-  //    "zone": 6,
-  //    "open_to_public": "n"
-  //},
-  //{
-  //    "name": "Scott Falls",
-  //    "zone": 45,
-  //    "open_to_public": "y"
-  //},
-  //{
-  //    "name": "Tannery Falls",
-  //    "zone": 16,
-  //    "open_to_public": "y"
-  //},
-  //{
-  //    "name": "Twin Falls #1",
-  //    "zone": 16,
-  //    "open_to_public": "y"
-  //},
-  //{
-  //    "name": "Twin Falls #2",
-  //    "zone": 16,
-  //    "open_to_public": "y"
-  //},
-  //{
-  //    "name": "Wagner Falls",
-  //    "zone": 16,
-  //    "open_to_public": "y"
-  //}
-
-
-  //  ];
-
-
-
-    // We added this simple top-level model to separate the knockout
-    // viewmodel from the select-filter sub-model.  It's easy to add
-    // other knockout variables and bindings to this view model if
-    // needed for other controls on the page.
     var viewModel = function() {
         this.selectFilterVM = new sfViewModel(this);
     };
 
 
-    var AllItems = [];
+    var AllItems = [ ];
     $(document).ready(function () {
         var model = new viewModel();
         // specify the method to load the select filters.
