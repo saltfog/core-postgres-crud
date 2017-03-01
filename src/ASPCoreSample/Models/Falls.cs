@@ -28,7 +28,7 @@ namespace ASPCoreSample.Models
 
         public float lat_long { get; set; }
 
-        public int county { get; set; }
+        public int county_id { get; set; }
 
         [Required]
         [Display(Name = "Open to Public")]
@@ -43,6 +43,7 @@ namespace ASPCoreSample.Models
 
         [Required]
         [DataType(DataType.Date)] //Seems to add a datepicker sweet!
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Display(Name = "Date Added")]
         public DateTime confirmed_date { get; set; }
     }

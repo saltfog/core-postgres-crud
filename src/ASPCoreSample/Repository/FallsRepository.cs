@@ -41,23 +41,21 @@ namespace ASPCoreSample.Repository
         public Falls FindByID(int id)
         {
 
-            return Connection.Query<Falls>("SELECT * FROM upfall WHERE id = @id", new { id = id }).FirstOrDefault();
+            return Connection.Query<Falls>("SELECT * FROM upfall WHERE id = :id", new { id = id }).FirstOrDefault();
 
         }
 
         public void Remove(int id)
         {
-            Connection.Execute("DELETE FROM upfall WHERE id = @id", new { id = id });
+            Connection.Execute("DELETE FROM upfall WHERE id = :id", new { id = id });
 
         }
 
         public void Update(Falls item)
         {
-            using (IDbConnection dbConnection = Connection)
-            {
-                dbConnection.Open();
-                Connection.Execute("UPDATE upfall SET name = @name, datum = @datum, zone = @zone, northing = @northing, easting = @easting, lat_lon = @lat_lon, county_id = @county_id, open_to_public = @open_to_public, owner_id = @Owner_Id, description = @description, confirmed_date = @confirmed_date WHERE id = @id", item);
-            }
+
+                Connection.Execute("UPDATE upfall SET name = @name, datum = @datum, zone = @zone, northing = @northing, easting = @easting, lat_lon = @lat_lon, county_id = @county_id, open_to_public = @open_to_public, owner_id = @owner_id, description = @description, confirmed_date = @confirmed_date WHERE id = @id", item);
+
 
         }
 

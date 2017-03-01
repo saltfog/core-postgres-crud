@@ -47,11 +47,11 @@
                 </div>
             </div>
             <div class="form-group">
-                <label asp-for="county" class="col-md-2 control-label"></label>
+                <label asp-for="county_id" class="col-md-2 control-label"></label>
                 <div class="col-md-10">
                     @* Enum Select Tags Awesome *@
-                    <select class="form-control" asp-for="county" asp-items="Html.GetEnumSelectList<ASPCoreSample.Models.County>()"></select>
-                    <span asp-validation-for="county" class="text-danger" />
+                    <select class="form-control" asp-for="county_id" asp-items="Html.GetEnumSelectList<ASPCoreSample.Models.County>()"></select>
+                    <span asp-validation-for="county_id" class="text-danger" />
                 </div>
             </div>
             <div class="form-group">
