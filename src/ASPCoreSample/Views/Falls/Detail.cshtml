@@ -1,0 +1,19 @@
+﻿@model ASPCoreSample.Models.Falls
+
+@{
+    var item = Model;
+    if (!Context.Items.ContainsKey("RenderUpdateModal"))
+    {
+        Context.Items["RenderUpdateModal"] = true;
+    }
+}
+<div class="row">
+    <div class="col-sm-8">
+        @item.confirmed_date
+        <div class="row">
+            <div class="col-sm-6">@item.county_id</div>
+            <div class="col-sm-6" >@item.zone</div>
+        </div>
+    </div>
+    <div class="col-sm-4">@item.description</div>
+</div>
